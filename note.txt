@@ -1,0 +1,21 @@
+
+weather api call by city
+https://api.openweathermap.org/data/2.5/weather?q=Birmingham&appid=6f6cd94be7c9266b5280d639b56fa121
+
+required key:
+6f6cd94be7c9266b5280d639b56fa121
+
+unix时间戳：从1970年之后算的秒数
+need to convert unix timestamp to date format using momoent.js
+
+weather icon
+need to search weather api icon url - stackoverflow有讲
+
+temperature (unit = metric)
+humidity(%)
+wind speed(meter per second)
+UV index需要color background去搜uv是多少的时候需要什么颜色
+
+forcast - api里找one call api daily fprecast for 不用7天4天就行
+为了能fetch future data我们需要把第一开始的city give back的lat and long搞下来以匹配forcast的数据
+
