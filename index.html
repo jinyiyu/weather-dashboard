@@ -31,9 +31,9 @@
   <body>
     <!-- header section with nav bar -->
     <header>
-      <nav class="navbar navbar-expand-lg bg-light">
+      <nav class="navbar navbar-expand-lg navColor">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
+          <!-- <a class="navbar-brand" href="#">Navbar</a> -->
           <button
             class="navbar-toggler"
             type="button"
@@ -47,10 +47,13 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-              <a class="nav-link active" aria-current="page" href="./index.html"
+              <a
+                class="nav-link active navText"
+                aria-current="page"
+                href="./index.html"
                 >Home</a
               >
-              <a class="nav-link" href="./journal.html">My Journal</a>
+              <a class="nav-link navText" href="./journal.html">My Journal</a>
             </div>
           </div>
         </div>
@@ -60,31 +63,50 @@
     <!-- main section with banner and contect -->
     <main>
       <!-- my banner section -->
-      <div class="jumbotron .mx-auto">
+      <div class="jumbotron bannerContainer text-center">
         <h1 class="display-4">My Weather Journey</h1>
         <p class="lead">A simple for you to save your favorable jouney!</p>
         <hr class="my-4" />
         <p class="lead">
-          <a class="btn btn-primary btn-lg" href="#" role="button"
-            >+ Save Your Journey</a
+          <a
+            class="btn btn-primary btn-lg btnColor"
+            href="./journal.html"
+            role="button"
+            >+ Save New Journal</a
           >
         </p>
       </div>
 
-      <section>
-        <div class="row">
-          <!-- my aside div with search form and search history -->
-          <div class="col-md-3 col-sm-12 border">
-            <div>search form</div>
-            <div>search history</div>
-          </div>
-          <!-- my main div with current date and forcast weather info-->
-          <div class="col-md-9 col-sm-12 border">
-            <div>current date weather</div>
-            <div>5 forcast date weather</div>
-          </div>
+      <div class="row g-0">
+        <!-- my aside div with search form -->
+        <div class="col-md-3 col-sm-12 border">
+          <form class="p-3">
+            <div class="mb-3">
+              <h2 class="mt-3 text-center">Search City Name</h2>
+              <hr />
+              <div class="input-group ms-1">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="search-input"
+                  placeholder="Search.."
+                />
+                <button type="submit" class="btn btn-primary btnColor">
+                  <i class="fa fa-search"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+          <!-- my aside div with search history -->
+          <div>search history</div>
         </div>
-      </section>
+        <!-- my main div with current date -->
+        <div class="col-md-9 col-sm-12 border">
+          <div>current date weather</div>
+          <!-- my main div with forcast weather info -->
+          <div>5 forcast date weather</div>
+        </div>
+      </div>
     </main>
 
     <!-- my footer with copy right -->

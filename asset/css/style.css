@@ -4,6 +4,9 @@
   --maximum-blue-purple: #c8b6ffff;
   --lavender-blue: #b8c0ffff;
   --lavender-blue-2: #bbd0ffff;
+  --banner-backgroud: #f8f9fa;
+  --btn: #dee2ff;
+  --navbar: #8e9aaf;
 }
 
 body {
@@ -17,9 +20,22 @@ body {
   font-family: "Source Sans Pro", sans-serif;
 }
 
+.navColor {
+  background-color: var(--navbar);
+}
+
+.btnColor {
+  background-color: var(--btn);
+  color: grey;
+  border: none;
+}
+
+.navText {
+  color: whitesmoke;
+}
+
 .jumbotron {
   padding: 2rem 1rem;
-  margin-bottom: 2rem;
-  background-color: #e9ecef;
+  background-color: var(--banner-backgroud);
   border-radius: 0.3rem;
 }
