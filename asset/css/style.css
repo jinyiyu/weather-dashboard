@@ -42,6 +42,7 @@ body {
   background-color: var(--banner-backgroud);
   border-radius: 0.3rem;
 }
+
 .currentWeather {
   padding: 2rem 1rem;
   background-color: white;
@@ -50,7 +51,6 @@ body {
 .rounded-pill {
   background-color: var(--lavender-blue-2);
   color: rgb(97, 93, 93);
-  /* color: #8e9aaf; */
 }
 .UVColor {
   background-color: #dee2ff;
@@ -70,4 +70,7 @@ body {
 .card-text {
   font-weight: 500;
   font-size: 1.2rem;
+}
+.weatherCards {
+  width: 22rem;
 }
