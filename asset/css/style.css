@@ -57,6 +57,17 @@ body {
   border-radius: 15%;
   color: rgb(97, 93, 93);
 }
-.titleColor {
+.titleColor,
+.bgColor {
   background-color: var(--banner-backgroud);
+}
+.weatherIcon {
+  width: 7rem;
+  height: 7rem;
+  display: block;
+  margin: auto;
+}
+.card-text {
+  font-weight: 500;
+  font-size: 1.2rem;
 }

@@ -19,3 +19,5 @@ UV index需要color background去搜uv是多少的时候需要什么颜色
 forcast - api里找one call api daily fprecast for 不用7天4天就行
 为了能fetch future data我们需要把第一开始的city give back的lat and long搞下来以匹配forcast的数据
 
+"http://openweathermap.org/img/w/04d.png";
+04d是api找的code，可以替换
