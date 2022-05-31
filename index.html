@@ -79,7 +79,7 @@
 
       <div class="row g-0">
         <!-- my aside div with search form -->
-        <div class="col-md-3 col-sm-12 border">
+        <div class="col-md-4 col-sm-12 border">
           <form class="p-3">
             <div class="mb-3">
               <h2 class="mt-3 text-center">Search City Name</h2>
@@ -124,43 +124,322 @@
           </div>
         </div>
         <!-- my main div with current date -->
-        <div class="col-md-9 col-sm-12 border">
+        <div class="col-md-8 col-sm-12 border">
           <div class="currentWeather">
-            <h2 class="text-center">London</h2>
-            <p class="text-center">Tuesday,31st May, 2022 14:48:20</p>
-            <img class="text-center" alt="cloudy image" />
-            <div>
-              <div class="row g-0">
-                <div class="col-sm-12 col-md-4 p-2 border titleColor fw-bold">
-                  Temperature
-                </div>
-                <div class="col-sm-12 col-md-8 p-2 border">14.42°C</div>
+            <div class="text-center">
+              <h2 class="card-title">London</h2>
+              <p class="card-text">Tuesday,31st May, 2022 14:48:20</p>
+              <img
+                src="http://openweathermap.org/img/w/04d.png"
+                alt="cloudy image"
+              />
+            </div>
+            <div class="row justify-content-center g-0">
+              <div class="col-sm-12 col-md-3 p-2 border titleColor fw-bold">
+                Temperature
               </div>
-              <div class="row g-0">
-                <div class="col-sm-12 col-md-4 p-2 border titleColor fw-bold">
-                  Humidity
-                </div>
-                <div class="col-sm-12 col-md-8 p-2 border">73%</div>
+              <div class="col-sm-12 col-md-7 p-2 border">14.42°C</div>
+            </div>
+            <div class="row justify-content-center g-0">
+              <div class="col-sm-12 col-md-3 p-2 border titleColor fw-bold">
+                Humidity
               </div>
-              <div class="row g-0">
-                <div class="col-sm-12 col-md-4 p-2 border titleColor fw-bold">
-                  Wind Speed
-                </div>
-                <div class="col-sm-12 col-md-8 p-2 border">5.14 MPH</div>
+              <div class="col-sm-12 col-md-7 p-2 border">73%</div>
+            </div>
+            <div class="row justify-content-center g-0">
+              <div class="col-sm-12 col-md-3 p-2 border titleColor fw-bold">
+                Wind Speed
               </div>
-              <div class="row g-0">
-                <div class="col-sm-12 col-md-4 p-2 border titleColor fw-bold">
-                  UV Index
-                </div>
-                <div class="col-sm-12 col-md-8 p-2 border">
-                  <span class="UVColor px-2">4.31</span>
-                </div>
+              <div class="col-sm-12 col-md-7 p-2 border">5.14 MPH</div>
+            </div>
+            <div class="row justify-content-center g-0">
+              <div class="col-sm-12 col-md-3 p-2 border titleColor fw-bold">
+                UV Index
+              </div>
+              <div class="col-sm-12 col-md-7 p-2 border">
+                <span class="UVColor px-2">4.31</span>
               </div>
             </div>
           </div>
 
           <!-- my main div with forcast weather info -->
-          <div>5 forcast date weather</div>
+          <div class="row g-0">
+            <hr class="m-0" />
+            <h2 class="card-title text-center p-3 m-0 bgColor">
+              6-Day Forecast
+            </h2>
+            <div class="d-flex justify-content-center flex-wrap bgColor">
+              <!-- card 1 -->
+              <div style="width: 25rem" class="card">
+                <div class="weatherIcon">
+                  <img
+                    src="http://openweathermap.org/img/w/04d.png"
+                    class="card-img-top border"
+                    alt="cloudy image"
+                  />
+                </div>
+                <div class="card-body text-center">
+                  <p class="card-text">Tue, 31st May, 2022</p>
+                </div>
+                <div class="row justify-content-center g-0">
+                  <div class="col-sm-12 col-md-5 p-2 border titleColor fw-bold">
+                    Temperature
+                  </div>
+                  <div class="col-sm-12 col-md-7 p-2 border">14.42°C</div>
+                </div>
+                <div class="row justify-content-center g-0">
+                  <div class="col-sm-12 col-md-5 p-2 border titleColor fw-bold">
+                    Humidity
+                  </div>
+                  <div class="col-sm-12 col-md-7 p-2 border">73%</div>
+                </div>
+                <div class="row justify-content-center g-0">
+                  <div class="col-sm-12 col-md-5 p-2 border titleColor fw-bold">
+                    Wind Speed
+                  </div>
+                  <div class="col-sm-12 col-md-7 p-2 border">5.14 MPH</div>
+                </div>
+                <div class="row justify-content-center g-0">
+                  <div class="col-sm-12 col-md-5 p-2 border titleColor fw-bold">
+                    UV Index
+                  </div>
+                  <div class="col-sm-12 col-md-7 p-2 border">
+                    <span class="UVColor px-2">4.31</span>
+                  </div>
+                </div>
+
+                <div class="card-body">
+                  <a href="#" class="card-link">Card link</a>
+                  <a href="#" class="card-link">Another link</a>
+                </div>
+              </div>
+
+              <!-- card 2 -->
+              <div style="width: 25rem" class="card">
+                <div class="weatherIcon">
+                  <img
+                    src="http://openweathermap.org/img/w/04d.png"
+                    class="card-img-top border"
+                    alt="cloudy image"
+                  />
+                </div>
+                <div class="card-body text-center">
+                  <p class="card-text">Tue, 31st May, 2022</p>
+                </div>
+                <div class="row justify-content-center g-0">
+                  <div class="col-sm-12 col-md-5 p-2 border titleColor fw-bold">
+                    Temperature
+                  </div>
+                  <div class="col-sm-12 col-md-7 p-2 border">14.42°C</div>
+                </div>
+                <div class="row justify-content-center g-0">
+                  <div class="col-sm-12 col-md-5 p-2 border titleColor fw-bold">
+                    Humidity
+                  </div>
+                  <div class="col-sm-12 col-md-7 p-2 border">73%</div>
+                </div>
+                <div class="row justify-content-center g-0">
+                  <div class="col-sm-12 col-md-5 p-2 border titleColor fw-bold">
+                    Wind Speed
+                  </div>
+                  <div class="col-sm-12 col-md-7 p-2 border">5.14 MPH</div>
+                </div>
+                <div class="row justify-content-center g-0">
+                  <div class="col-sm-12 col-md-5 p-2 border titleColor fw-bold">
+                    UV Index
+                  </div>
+                  <div class="col-sm-12 col-md-7 p-2 border">
+                    <span class="UVColor px-2">4.31</span>
+                  </div>
+                </div>
+
+                <div class="card-body">
+                  <a href="#" class="card-link">Card link</a>
+                  <a href="#" class="card-link">Another link</a>
+                </div>
+              </div>
+
+              <!-- card 3 -->
+              <div style="width: 25rem" class="card">
+                <div class="weatherIcon">
+                  <img
+                    src="http://openweathermap.org/img/w/04d.png"
+                    class="card-img-top border"
+                    alt="cloudy image"
+                  />
+                </div>
+                <div class="card-body text-center">
+                  <p class="card-text">Tue, 31st May, 2022</p>
+                </div>
+                <div class="row justify-content-center g-0">
+                  <div class="col-sm-12 col-md-5 p-2 border titleColor fw-bold">
+                    Temperature
+                  </div>
+                  <div class="col-sm-12 col-md-7 p-2 border">14.42°C</div>
+                </div>
+                <div class="row justify-content-center g-0">
+                  <div class="col-sm-12 col-md-5 p-2 border titleColor fw-bold">
+                    Humidity
+                  </div>
+                  <div class="col-sm-12 col-md-7 p-2 border">73%</div>
+                </div>
+                <div class="row justify-content-center g-0">
+                  <div class="col-sm-12 col-md-5 p-2 border titleColor fw-bold">
+                    Wind Speed
+                  </div>
+                  <div class="col-sm-12 col-md-7 p-2 border">5.14 MPH</div>
+                </div>
+                <div class="row justify-content-center g-0">
+                  <div class="col-sm-12 col-md-5 p-2 border titleColor fw-bold">
+                    UV Index
+                  </div>
+                  <div class="col-sm-12 col-md-7 p-2 border">
+                    <span class="UVColor px-2">4.31</span>
+                  </div>
+                </div>
+
+                <div class="card-body">
+                  <a href="#" class="card-link">Card link</a>
+                  <a href="#" class="card-link">Another link</a>
+                </div>
+              </div>
+
+              <!-- card 4 -->
+              <div style="width: 25rem" class="card">
+                <div class="weatherIcon">
+                  <img
+                    src="http://openweathermap.org/img/w/04d.png"
+                    class="card-img-top border"
+                    alt="cloudy image"
+                  />
+                </div>
+                <div class="card-body text-center">
+                  <p class="card-text">Tue, 31st May, 2022</p>
+                </div>
+                <div class="row justify-content-center g-0">
+                  <div class="col-sm-12 col-md-5 p-2 border titleColor fw-bold">
+                    Temperature
+                  </div>
+                  <div class="col-sm-12 col-md-7 p-2 border">14.42°C</div>
+                </div>
+                <div class="row justify-content-center g-0">
+                  <div class="col-sm-12 col-md-5 p-2 border titleColor fw-bold">
+                    Humidity
+                  </div>
+                  <div class="col-sm-12 col-md-7 p-2 border">73%</div>
+                </div>
+                <div class="row justify-content-center g-0">
+                  <div class="col-sm-12 col-md-5 p-2 border titleColor fw-bold">
+                    Wind Speed
+                  </div>
+                  <div class="col-sm-12 col-md-7 p-2 border">5.14 MPH</div>
+                </div>
+                <div class="row justify-content-center g-0">
+                  <div class="col-sm-12 col-md-5 p-2 border titleColor fw-bold">
+                    UV Index
+                  </div>
+                  <div class="col-sm-12 col-md-7 p-2 border">
+                    <span class="UVColor px-2">4.31</span>
+                  </div>
+                </div>
+
+                <div class="card-body">
+                  <a href="#" class="card-link">Card link</a>
+                  <a href="#" class="card-link">Another link</a>
+                </div>
+              </div>
+
+              <!-- card 5 -->
+              <div style="width: 25rem" class="card">
+                <div class="weatherIcon">
+                  <img
+                    src="http://openweathermap.org/img/w/04d.png"
+                    class="card-img-top border"
+                    alt="cloudy image"
+                  />
+                </div>
+                <div class="card-body text-center">
+                  <p class="card-text">Tue, 31st May, 2022</p>
+                </div>
+                <div class="row justify-content-center g-0">
+                  <div class="col-sm-12 col-md-5 p-2 border titleColor fw-bold">
+                    Temperature
+                  </div>
+                  <div class="col-sm-12 col-md-7 p-2 border">14.42°C</div>
+                </div>
+                <div class="row justify-content-center g-0">
+                  <div class="col-sm-12 col-md-5 p-2 border titleColor fw-bold">
+                    Humidity
+                  </div>
+                  <div class="col-sm-12 col-md-7 p-2 border">73%</div>
+                </div>
+                <div class="row justify-content-center g-0">
+                  <div class="col-sm-12 col-md-5 p-2 border titleColor fw-bold">
+                    Wind Speed
+                  </div>
+                  <div class="col-sm-12 col-md-7 p-2 border">5.14 MPH</div>
+                </div>
+                <div class="row justify-content-center g-0">
+                  <div class="col-sm-12 col-md-5 p-2 border titleColor fw-bold">
+                    UV Index
+                  </div>
+                  <div class="col-sm-12 col-md-7 p-2 border">
+                    <span class="UVColor px-2">4.31</span>
+                  </div>
+                </div>
+
+                <div class="card-body">
+                  <a href="#" class="card-link">Card link</a>
+                  <a href="#" class="card-link">Another link</a>
+                </div>
+              </div>
+
+              <!-- card 6 -->
+              <div style="width: 25rem" class="card">
+                <div class="weatherIcon">
+                  <img
+                    src="http://openweathermap.org/img/w/04d.png"
+                    class="card-img-top border"
+                    alt="cloudy image"
+                  />
+                </div>
+                <div class="card-body text-center">
+                  <p class="card-text">Tue, 31st May, 2022</p>
+                </div>
+                <div class="row justify-content-center g-0">
+                  <div class="col-sm-12 col-md-5 p-2 border titleColor fw-bold">
+                    Temperature
+                  </div>
+                  <div class="col-sm-12 col-md-7 p-2 border">14.42°C</div>
+                </div>
+                <div class="row justify-content-center g-0">
+                  <div class="col-sm-12 col-md-5 p-2 border titleColor fw-bold">
+                    Humidity
+                  </div>
+                  <div class="col-sm-12 col-md-7 p-2 border">73%</div>
+                </div>
+                <div class="row justify-content-center g-0">
+                  <div class="col-sm-12 col-md-5 p-2 border titleColor fw-bold">
+                    Wind Speed
+                  </div>
+                  <div class="col-sm-12 col-md-7 p-2 border">5.14 MPH</div>
+                </div>
+                <div class="row justify-content-center g-0">
+                  <div class="col-sm-12 col-md-5 p-2 border titleColor fw-bold">
+                    UV Index
+                  </div>
+                  <div class="col-sm-12 col-md-7 p-2 border">
+                    <span class="UVColor px-2">4.31</span>
+                  </div>
+                </div>
+
+                <div class="card-body">
+                  <a href="#" class="card-link">Card link</a>
+                  <a href="#" class="card-link">Another link</a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </main>
