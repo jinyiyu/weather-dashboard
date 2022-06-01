@@ -18,17 +18,18 @@ const writeToLocalStorage = (key, value) => {
   localStorage.setItem(key, stringifiedValue);
 };
 
-// writeToLocalStorage("recentSearch", "London");
-
 //   add eventListener to the cities enabling to click
 const clickRecentCity = (event) => {
   const handleRecentCityClick = $(event.target).attr("data-city");
   console.log(handleRecentCityClick);
 };
 
+// testing search history
+const readRecentSearch = ["London"];
+
 const renderRecentCity = () => {
-  const readRecentSearch = readFromLocalStorage("recentSearch", []);
-  console.log(readRecentSearch);
+  //   const readRecentSearch = readFromLocalStorage("recentSearch", []);
+
   if (!readRecentSearch.length) {
     // - if no search history, render massage : no previous search history.
     const noRecentSearch = `<div class="alert alert-warning p-4 text-center" role="alert">
@@ -37,30 +38,23 @@ const renderRecentCity = () => {
     searchHistoryCity.append(noRecentSearch);
   } else {
     // - if has search history in LS then render the city name one by one for the top 8 most resent search
-    const recentSearch = `            <ul class="list-group">
-      <li
+    const listCityName = (city) => {
+      const recentSearch = `<li
         class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+        data-city="London"
       >
-        London
+        ${city}
         <span class="badge rounded-pill">14</span>
-      </li>
-      <li
-        class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
-      >
-        Birmingham
-        <span class="badge rounded-pill">2</span>
-      </li>
-      <li
-        class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
-      >
-        Seoul
-        <span class="badge rounded-pill">1</span>
-      </li>
-      <button type="submit" class="btn btn-primary btnColor">
-        Clear All Recent Search
-      </button>
-    </ul>`;
-    searchHistoryCity.append(recentSearch);
+      </li>`;
+      cityName.append(recentSearch);
+    };
+
+    const recentSearchCities = readRecentSearch.map(listCityName).join("");
+
+    const clearBtn = `              <button type="submit" class="btn btn-primary btnColor">
+    Clear All Recent Search
+  </button>`;
+    cityName.append(clearBtn);
   }
 };
 
