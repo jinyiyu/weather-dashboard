@@ -1,5 +1,6 @@
 const searchHistoryCity = $("#searchHistoryCity");
 const cityName = $("#cityName");
+const searchInput = $("search-input");
 
 const readFromLocalStorage = (key, defaultValue) => {
   // get from LS using key name
@@ -25,7 +26,7 @@ const clickRecentCity = (event) => {
 };
 
 // testing search history
-const readRecentSearch = ["London"];
+const readRecentSearch = [];
 
 const renderRecentCity = () => {
   //   const readRecentSearch = readFromLocalStorage("recentSearch", []);
@@ -58,9 +59,21 @@ const renderRecentCity = () => {
   }
 };
 
+const handleSearchInput = (event) => {
+  // get input val
+  event.preventDefault();
+  searchInput.val();
+
+  // check if exist in ls
+  // exist: 1) add up rouned pill 2) render wearther
+  //        3)store it in ls 4)refresh the page
+  // not exist: push to ls and refresh?
+};
+
 const onReady = () => {
   renderRecentCity();
   cityName.click(clickRecentCity);
+  searchInput.submit(handleSearchInput);
 };
 
 $(document).ready(onReady);
