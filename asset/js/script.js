@@ -24,6 +24,27 @@ const writeToLocalStorage = (key, value) => {
   localStorage.setItem(key, stringifiedValue);
 };
 
+const constructUrl = (baseUrl, params) => {
+  const queryParams = new URLSearchParams(params).toString();
+
+  return queryParams ? `${baseUrl}?${queryParams}` : baseUrl;
+};
+
+const fetchData = async (url, options = {}) => {
+  try {
+    const response = await fetch(url, options);
+
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    } else {
+      throw new Error("Failed to fetch data");
+    }
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
 //add eventListener to the cities enabling to click
 const clickRecentCity = (event) => {
   const handleRecentCityClick = $(event.target).attr("data-city");
@@ -80,44 +101,71 @@ const renderRecentCity = () => {
   }
 };
 
-const renderCurrentWeather = () => {
-  const renderCurrentWeatherCard = `            <div class="text-center">
-    <h2 class="card-title">London</h2>
-    <p class="card-text">Tuesday,31st May, 2022 14:48:20</p>
-    <img
-      src="http://openweathermap.org/img/w/04d.png"
-      alt="cloudy image"
-    />
-  </div>
-  <div class="row justify-content-center g-0">
-    <div class="col-sm-12 col-md-3 p-2 border titleColor fw-bold">
-      Temperature
-    </div>
-    <div class="col-sm-12 col-md-7 p-2 border">14.42°C</div>
-  </div>
-  <div class="row justify-content-center g-0">
-    <div class="col-sm-12 col-md-3 p-2 border titleColor fw-bold">
-      Humidity
-    </div>
-    <div class="col-sm-12 col-md-7 p-2 border">73%</div>
-  </div>
-  <div class="row justify-content-center g-0">
-    <div class="col-sm-12 col-md-3 p-2 border titleColor fw-bold">
-      Wind Speed
-    </div>
-    <div class="col-sm-12 col-md-7 p-2 border">5.14 MPH</div>
-  </div>
-  <div class="row justify-content-center g-0">
-    <div class="col-sm-12 col-md-3 p-2 border titleColor fw-bold">
-      UV Index
-    </div>
-    <div class="col-sm-12 col-md-7 p-2 border">
-      <span class="UVColor px-2">4.31</span>
-    </div>
-  </div>`;
+const renderCurrentWeather = async (city, data) => {
+  const renderCurrentWeatherCard = `<div class="text-center">
+<h2 class="card-title">${city}</h2>
+<p class="card-text">Tuesday,31st May, 2022 14:48:20</p>
+<img
+  src="http://openweathermap.org/img/w/${data.weather[0].icon}.png"
+  alt="cloudy image"
+/>
+</div>
+<div class="row justify-content-center g-0">
+<div class="col-sm-12 col-md-3 p-2 border titleColor fw-bold">
+  Temperature
+</div>
+<div class="col-sm-12 col-md-7 p-2 border">${data.temp}°C</div>
+</div>
+<div class="row justify-content-center g-0">
+<div class="col-sm-12 col-md-3 p-2 border titleColor fw-bold">
+  Humidity
+</div>
+<div class="col-sm-12 col-md-7 p-2 border">${data.humidity}%</div>
+</div>
+<div class="row justify-content-center g-0">
+<div class="col-sm-12 col-md-3 p-2 border titleColor fw-bold">
+  Wind Speed
+</div>
+<div class="col-sm-12 col-md-7 p-2 border">${data.wind_speed} MPH</div>
+</div>
+<div class="row justify-content-center g-0">
+<div class="col-sm-12 col-md-3 p-2 border titleColor fw-bold">
+  UV Index
+</div>
+<div class="col-sm-12 col-md-7 p-2 border">
+  <span class="UVColor px-2">${data.uvi}</span>
+</div>
+</div>`;
   currentWeatherCard.append(renderCurrentWeatherCard);
 };
+
 const renderForcastWeather = () => {};
+
+const renderWeather = async (getCitySearch) => {
+  const url = constructUrl("https://api.openweathermap.org/data/2.5/weather", {
+    q: getCitySearch,
+    appid: "6f6cd94be7c9266b5280d639b56fa121",
+  });
+  const Data = await fetchData(url);
+  let lat = Data?.coord?.lat;
+  let lon = Data?.coord?.lon;
+  let cityName = Data.name;
+
+  const newUrl = constructUrl(
+    "https://api.openweathermap.org/data/2.5/onecall",
+    {
+      lat: lat,
+      lon: lon,
+      exclude: "minutely,hourly",
+      units: "metric",
+      appid: "6f6cd94be7c9266b5280d639b56fa121",
+    }
+  );
+  const newData = await fetchData(newUrl);
+  console.log(newData);
+  renderCurrentWeather(cityName, newData.current);
+  renderForcastWeather(newData);
+};
 
 const handleSearchInput = (event) => {
   // get input val
@@ -125,12 +173,8 @@ const handleSearchInput = (event) => {
   const getCitySearch = searchInput.val();
   console.log(getCitySearch);
 
-  // check if searched city exist in ls
   if (getCitySearch) {
-    //  1) render current weather
-    renderCurrentWeather();
-    //  2)render forcast weather
-    renderForcastWeather();
+    renderWeather(getCitySearch);
     //  3)store it in ls
     const citySearch = readFromLocalStorage("citySearch", []);
     citySearch.push(getCitySearch);
@@ -146,7 +190,7 @@ const handleSearchInput = (event) => {
 
 const onReady = () => {
   renderRecentCity();
-  //   cityName.click(clickRecentCity);
+  //   cityName.click(clickRecentCity);回头需要完善的
   searchBtn.click(handleSearchInput);
 };
 
