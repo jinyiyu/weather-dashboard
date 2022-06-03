@@ -82,7 +82,7 @@
       <div class="row g-0">
         <!-- my aside div with search form -->
         <div class="col-md-4 border">
-          <form class="p-3">
+          <form class="p-3" id="searchForm">
             <div class="mb-3">
               <h2 class="mt-3 text-center">Search City Name</h2>
               <hr />
@@ -90,10 +90,14 @@
                 <input
                   type="text"
                   class="form-control"
-                  id="search-input"
                   placeholder="Search.."
+                  id="search-input"
                 />
-                <button type="submit" class="btn btn-primary btnColor">
+                <button
+                  type="submit"
+                  class="btn btn-primary btnColor"
+                  id="searchBtn"
+                >
                   <i class="fa fa-search"></i>
                 </button>
               </div>
