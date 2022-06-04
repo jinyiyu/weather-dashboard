@@ -6,6 +6,7 @@ const currentWeatherCard = $("#currentWeatherCard");
 const clearAllBtn = $("#clearAllBtn");
 const noRecentSearch = $("#noRecentSearch");
 const alarmSection = $("#alarmSection");
+const forcastSection = $("#forcastSection");
 
 const readFromLocalStorage = (key, defaultValue) => {
   // get from LS using key name
@@ -101,10 +102,10 @@ const renderRecentCity = () => {
   }
 };
 
-const renderCurrentWeather = async (city, data) => {
+const renderCurrentWeather = (city, data) => {
   const renderCurrentWeatherCard = `<div class="text-center">
 <h2 class="card-title">${city}</h2>
-<p class="card-text">Tuesday,31st May, 2022 14:48:20</p>
+<p class="card-text">${moment.unix(data.dt).format("ddd, Do MMM, YYYY")}</p>
 <img
   src="http://openweathermap.org/img/w/${data.weather[0].icon}.png"
   alt="cloudy image"
@@ -139,7 +140,66 @@ const renderCurrentWeather = async (city, data) => {
   currentWeatherCard.append(renderCurrentWeatherCard);
 };
 
-const renderForcastWeather = () => {};
+const renderForcastWeather = (data) => {
+  const renderForcastWeatherCard = (each) => {
+    return `<div class="card m-2 shadow-sm border-0 weatherCards">
+    <div class="weatherIcon">
+      <img
+        src="http://openweathermap.org/img/w/${each.weather[0].icon}.png"
+        class="card-img-top border"
+        alt="cloudy image"
+      />
+    </div>
+    <div class="card-body text-center">
+      <p class="card-text">${moment
+        .unix(each.dt)
+        .format("ddd, Do MMM, YYYY")}</p>
+    </div>
+    <div class="row justify-content-center g-0">
+      <div class="col-sm-12 col-md-5 p-2 border titleColor fw-bold">
+        Temperature
+      </div>
+      <div class="col-sm-12 col-md-7 p-2 border">${each.temp.day}°C</div>
+    </div>
+    <div class="row justify-content-center g-0">
+      <div class="col-sm-12 col-md-5 p-2 border titleColor fw-bold">
+        Humidity
+      </div>
+      <div class="col-sm-12 col-md-7 p-2 border">${each.humidity}%</div>
+    </div>
+    <div class="row justify-content-center g-0">
+      <div class="col-sm-12 col-md-5 p-2 border titleColor fw-bold">
+        Wind Speed
+      </div>
+      <div class="col-sm-12 col-md-7 p-2 border">${each.wind_speed} MPH</div>
+    </div>
+    <div class="row justify-content-center g-0">
+      <div class="col-sm-12 col-md-5 p-2 border titleColor fw-bold">
+        UV Index
+      </div>
+      <div class="col-sm-12 col-md-7 p-2 border">
+        <span class="UVColor px-2">${each.uvi}</span>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <a href="#" class="card-link">Card link</a>
+      <a href="#" class="card-link">Another link</a>
+    </div>
+  </div>`;
+  };
+  const forcastcard = data.slice(1, 7).map(renderForcastWeatherCard).join("");
+
+  const ForcastWeatherCard = `<hr class="m-0" />
+    <h2 class="card-title text-center p-3 m-0 bgColor">
+      6-Day Forecast
+    </h2>
+    <div class="d-flex justify-content-center flex-wrap bgColor">
+      ${forcastcard}
+      </div>
+    </div>`;
+  forcastSection.append(ForcastWeatherCard);
+};
 
 const renderWeather = async (getCitySearch) => {
   const url = constructUrl("https://api.openweathermap.org/data/2.5/weather", {
@@ -163,8 +223,10 @@ const renderWeather = async (getCitySearch) => {
   );
   const newData = await fetchData(newUrl);
   console.log(newData);
+
+  //   render current and forcast weather card by applying the data from weather API
   renderCurrentWeather(cityName, newData.current);
-  renderForcastWeather(newData);
+  renderForcastWeather(newData.daily);
 };
 
 const handleSearchInput = (event) => {
