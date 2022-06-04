@@ -47,9 +47,9 @@ const fetchData = async (url, options = {}) => {
 };
 
 //add eventListener to the cities enabling to click
-const clickRecentCity = (event) => {
+const clickRecentCity = async (event) => {
   const handleRecentCityClick = $(event.target).attr("data-city");
-  console.log(handleRecentCityClick);
+  renderWeather(handleRecentCityClick);
 };
 
 const createClearAllBtn = () => {
@@ -102,44 +102,53 @@ const renderRecentCity = () => {
   }
 };
 
-const renderCurrentWeather = (city, data) => {
+const renderCurrentWeather = (data) => {
   const renderCurrentWeatherCard = `<div class="text-center">
-<h2 class="card-title">${city}</h2>
-<p class="card-text">${moment.unix(data.dt).format("ddd, Do MMM, YYYY")}</p>
-<img
-  src="http://openweathermap.org/img/w/${data.weather[0].icon}.png"
-  alt="cloudy image"
-/>
-</div>
-<div class="row justify-content-center g-0">
-<div class="col-sm-12 col-md-3 p-2 border titleColor fw-bold">
-  Temperature
-</div>
-<div class="col-sm-12 col-md-7 p-2 border">${data.temp}°C</div>
-</div>
-<div class="row justify-content-center g-0">
-<div class="col-sm-12 col-md-3 p-2 border titleColor fw-bold">
-  Humidity
-</div>
-<div class="col-sm-12 col-md-7 p-2 border">${data.humidity}%</div>
-</div>
-<div class="row justify-content-center g-0">
-<div class="col-sm-12 col-md-3 p-2 border titleColor fw-bold">
-  Wind Speed
-</div>
-<div class="col-sm-12 col-md-7 p-2 border">${data.wind_speed} MPH</div>
-</div>
-<div class="row justify-content-center g-0">
-<div class="col-sm-12 col-md-3 p-2 border titleColor fw-bold">
-  UV Index
-</div>
-<div class="col-sm-12 col-md-7 p-2 border">
-  <span class="UVColor px-2">${data.uvi}</span>
-</div>
-</div>`;
+  <h2 class="card-title">${data.cityName}</h2>
+  <p class="card-text">${moment
+    .unix(data.newData.current.dt)
+    .format("ddd, Do MMM, YYYY")}</p>
+  <img
+    src="http://openweathermap.org/img/w/${
+      data.newData.current.weather[0].icon
+    }.png"
+    alt="cloudy image"
+  />
+  </div>
+  <div class="row justify-content-center g-0">
+  <div class="col-sm-12 col-md-3 p-2 border titleColor fw-bold">
+    Temperature
+  </div>
+  <div class="col-sm-12 col-md-7 p-2 border">${
+    data.newData.current.temp
+  }°C</div>
+  </div>
+  <div class="row justify-content-center g-0">
+  <div class="col-sm-12 col-md-3 p-2 border titleColor fw-bold">
+    Humidity
+  </div>
+  <div class="col-sm-12 col-md-7 p-2 border">${
+    data.newData.current.humidity
+  }%</div>
+  </div>
+  <div class="row justify-content-center g-0">
+  <div class="col-sm-12 col-md-3 p-2 border titleColor fw-bold">
+    Wind Speed
+  </div>
+  <div class="col-sm-12 col-md-7 p-2 border">${
+    data.newData.current.wind_speed
+  } MPH</div>
+  </div>
+  <div class="row justify-content-center g-0">
+  <div class="col-sm-12 col-md-3 p-2 border titleColor fw-bold">
+    UV Index
+  </div>
+  <div class="col-sm-12 col-md-7 p-2 border">
+    <span class="UVColor px-2">${data.newData.current.uvi}</span>
+  </div>
+  </div>`;
   currentWeatherCard.append(renderCurrentWeatherCard);
 };
-
 const renderForcastWeather = (data) => {
   const renderForcastWeatherCard = (each) => {
     return `<div class="card m-2 shadow-sm border-0 weatherCards">
@@ -200,8 +209,7 @@ const renderForcastWeather = (data) => {
     </div>`;
   forcastSection.append(ForcastWeatherCard);
 };
-
-const renderWeather = async (getCitySearch) => {
+const fetchWeatherData = async (getCitySearch) => {
   const url = constructUrl("https://api.openweathermap.org/data/2.5/weather", {
     q: getCitySearch,
     appid: "6f6cd94be7c9266b5280d639b56fa121",
@@ -222,15 +230,19 @@ const renderWeather = async (getCitySearch) => {
     }
   );
   const newData = await fetchData(newUrl);
-  console.log(newData);
+  return { cityName, newData };
+};
 
-  //   render current and forcast weather card by applying the data from weather API
-  renderCurrentWeather(cityName, newData.current);
-  renderForcastWeather(newData.daily);
+//   render current and forcast weather card by applying the data from weather API
+const renderWeather = async (getCitySearch) => {
+  currentWeatherCard.empty();
+  forcastSection.empty();
+  const weatherData = await fetchWeatherData(getCitySearch);
+  renderCurrentWeather(weatherData);
+  renderForcastWeather(weatherData.newData.daily);
 };
 
 const handleSearchInput = (event) => {
-  // get input val
   event.preventDefault();
   const getCitySearch = searchInput.val();
   console.log(getCitySearch);
@@ -252,7 +264,7 @@ const handleSearchInput = (event) => {
 
 const onReady = () => {
   renderRecentCity();
-  //   cityName.click(clickRecentCity);回头需要完善的
+  cityName.click(clickRecentCity);
   searchBtn.click(handleSearchInput);
 };
 
