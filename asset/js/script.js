@@ -249,11 +249,13 @@ const handleSearchInput = (event) => {
 
   if (getCitySearch) {
     renderWeather(getCitySearch);
-    //  3)store it in ls
+
     const citySearch = readFromLocalStorage("citySearch", []);
-    citySearch.push(getCitySearch);
-    writeToLocalStorage("citySearch", citySearch);
-    cityName.children().remove();
+    if (!citySearch.includes(getCitySearch)) {
+      citySearch.push(getCitySearch);
+      writeToLocalStorage("citySearch", citySearch);
+      cityName.children().remove();
+    }
 
     // 4) add up rouned pill
     // 5) refresh the whole page
