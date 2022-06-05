@@ -50,7 +50,8 @@ body {
 }
 .rounded-pill {
   background-color: var(--lavender-blue-2);
-  color: rgb(97, 93, 93);
+  color: rgb(81, 80, 80);
+  font-size: 0.9rem;
 }
 
 .UVColor {

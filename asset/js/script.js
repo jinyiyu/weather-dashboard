@@ -51,6 +51,16 @@ const fetchData = async (url, options = {}) => {
 const clickRecentCity = async (event) => {
   const handleRecentCityClick = $(event.target).attr("data-city");
   renderWeather(handleRecentCityClick);
+  const citySearch = readFromLocalStorage("citySearch", []);
+  const savedCities = citySearch.map((each) => {
+    if (each.city === handleRecentCityClick) {
+      each.numOfSearch += 1;
+    }
+    return each;
+  });
+  writeToLocalStorage("citySearch", savedCities);
+  cityName.children().remove();
+  renderRecentCity();
 };
 
 const createClearAllBtn = () => {
@@ -261,7 +271,6 @@ const renderWeather = async (getCitySearch) => {
 
   try {
     const weatherData = await fetchWeatherData(getCitySearch);
-    console.log(weatherData);
 
     renderCurrentWeather(weatherData);
     renderForcastWeather(weatherData.newData.daily);
@@ -275,13 +284,11 @@ const renderWeather = async (getCitySearch) => {
 const handleSearchInput = async (event) => {
   event.preventDefault();
   const getCitySearch = searchInput.val().toLowerCase();
-  console.log(getCitySearch);
 
   if (getCitySearch) {
     const fetchStatus = await renderWeather(getCitySearch);
     if (fetchStatus) {
       const citySearch = readFromLocalStorage("citySearch", []);
-      console.log(citySearch);
 
       if (!citySearch.find((each) => each.city === getCitySearch)) {
         // create a object has two key numOfSearch and city
@@ -300,7 +307,6 @@ const handleSearchInput = async (event) => {
           }
           return each;
         });
-        console.log(savedCities);
         writeToLocalStorage("citySearch", savedCities);
         cityName.children().remove();
       }
