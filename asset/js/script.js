@@ -7,6 +7,7 @@ const clearAllBtn = $("#clearAllBtn");
 const noRecentSearch = $("#noRecentSearch");
 const alarmSection = $("#alarmSection");
 const forcastSection = $("#forcastSection");
+const mainSection = $("#mainSection");
 
 const readFromLocalStorage = (key, defaultValue) => {
   // get from LS using key name
@@ -85,13 +86,13 @@ const renderRecentCity = () => {
     alarmSection.empty();
     // cityName.removeChild();
     // - if has search history in LS then render the city name one by one for the top 8 most resent search
-    const listCityName = (city) => {
+    const listCityName = (each) => {
       const recentSearch = `<li
         id="test" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
-        data-city="${city}"
+        data-city="${each.city}"
       >
-        ${city}
-        <span class="badge rounded-pill">14</span>
+        ${each.city}
+        <span class="badge rounded-pill">${each.numOfSearch}</span>
       </li>`;
       cityName.append(recentSearch);
     };
@@ -99,6 +100,16 @@ const renderRecentCity = () => {
     citySearch.map(listCityName).join("");
     createClearAllBtn();
     clearAllBtn.click(handleClearAllBtn);
+  }
+};
+
+const changeUvColor = (uvi) => {
+  if (uvi >= 0 && uvi <= 2) {
+    return "bg-success";
+  } else if (uvi > 2 && uvi <= 8) {
+    return "bg-warning";
+  } else if (uvi > 8) {
+    return "bg-danger";
   }
 };
 
@@ -144,7 +155,9 @@ const renderCurrentWeather = (data) => {
     UV Index
   </div>
   <div class="col-sm-12 col-md-7 p-2 border">
-    <span class="UVColor px-2">${data.newData.current.uvi}</span>
+    <span class="UVColor px-2 ${changeUvColor(data.newData.current.uvi)}">${
+    data.newData.current.uvi
+  }</span>
   </div>
   </div>`;
   currentWeatherCard.append(renderCurrentWeatherCard);
@@ -187,7 +200,7 @@ const renderForcastWeather = (data) => {
         UV Index
       </div>
       <div class="col-sm-12 col-md-7 p-2 border">
-        <span class="UVColor px-2">${each.uvi}</span>
+        <span class="UVColor px-2 ${changeUvColor(each.uvi)}">${each.uvi}</span>
       </div>
     </div>
 
@@ -215,6 +228,7 @@ const fetchWeatherData = async (getCitySearch) => {
     appid: "6f6cd94be7c9266b5280d639b56fa121",
   });
   const Data = await fetchData(url);
+
   let lat = Data?.coord?.lat;
   let lon = Data?.coord?.lon;
   let cityName = Data.name;
@@ -233,35 +247,66 @@ const fetchWeatherData = async (getCitySearch) => {
   return { cityName, newData };
 };
 
+const catchInvalidSearch = () => {
+  const alart = `<div class="alert alert-danger m-0" role="alert">
+    The city name does not exist, try search again...
+  </div>`;
+  currentWeatherCard.append(alart);
+};
+
 //   render current and forcast weather card by applying the data from weather API
 const renderWeather = async (getCitySearch) => {
   currentWeatherCard.empty();
   forcastSection.empty();
-  const weatherData = await fetchWeatherData(getCitySearch);
-  renderCurrentWeather(weatherData);
-  renderForcastWeather(weatherData.newData.daily);
+
+  try {
+    const weatherData = await fetchWeatherData(getCitySearch);
+    console.log(weatherData);
+
+    renderCurrentWeather(weatherData);
+    renderForcastWeather(weatherData.newData.daily);
+    return true;
+  } catch (error) {
+    catchInvalidSearch();
+    return false;
+  }
 };
 
-const handleSearchInput = (event) => {
+const handleSearchInput = async (event) => {
   event.preventDefault();
-  const getCitySearch = searchInput.val();
+  const getCitySearch = searchInput.val().toLowerCase();
   console.log(getCitySearch);
 
   if (getCitySearch) {
-    renderWeather(getCitySearch);
+    const fetchStatus = await renderWeather(getCitySearch);
+    if (fetchStatus) {
+      const citySearch = readFromLocalStorage("citySearch", []);
+      console.log(citySearch);
 
-    const citySearch = readFromLocalStorage("citySearch", []);
-    if (!citySearch.includes(getCitySearch)) {
-      citySearch.push(getCitySearch);
-      writeToLocalStorage("citySearch", citySearch);
-      cityName.children().remove();
+      if (!citySearch.find((each) => each.city === getCitySearch)) {
+        // create a object has two key numOfSearch and city
+        const searchObject = {
+          city: getCitySearch,
+          numOfSearch: 1,
+        };
+        citySearch.push(searchObject);
+        writeToLocalStorage("citySearch", citySearch);
+        cityName.children().remove();
+      } else {
+        // add up rouned pill
+        const savedCities = citySearch.map((each) => {
+          if (each.city === getCitySearch) {
+            each.numOfSearch += 1;
+          }
+          return each;
+        });
+        console.log(savedCities);
+        writeToLocalStorage("citySearch", savedCities);
+        cityName.children().remove();
+      }
     }
-
-    // 4) add up rouned pill
-    // 5) refresh the whole page
   }
   renderRecentCity();
-  // not exist: render a message or check if its validate?
 };
 
 const onReady = () => {

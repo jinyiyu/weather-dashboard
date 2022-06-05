@@ -54,9 +54,8 @@ body {
 }
 
 .UVColor {
-  background-color: #dee2ff;
   border-radius: 15%;
-  color: rgb(97, 93, 93);
+  color: rgb(255, 255, 255);
 }
 .titleColor,
 .bgColor {
