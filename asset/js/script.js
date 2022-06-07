@@ -233,7 +233,7 @@ const renderForcastWeather = (data) => {
   forcastSection.append(ForcastWeatherCard);
 };
 const fetchWeatherData = async (getCitySearch) => {
-  const url = constructUrl("https://api.openweathermap.org/data/2.5/weather", {
+  const url = constructUrl("http://api.openweathermap.org/data/2.5/weather", {
     q: getCitySearch,
     appid: "6f6cd94be7c9266b5280d639b56fa121",
   });
@@ -244,7 +244,7 @@ const fetchWeatherData = async (getCitySearch) => {
   let cityName = Data.name;
 
   const newUrl = constructUrl(
-    "http://api.openweathermap.org/data/2.5/onecall",
+    "https://api.openweathermap.org/data/2.5/onecall",
     {
       lat: lat,
       lon: lon,
