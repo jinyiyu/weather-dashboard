@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- style links -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Josefin+Sans:wght@400;500;700&family=Lato:wght@100;400;700&family=Poppins:wght@300;400;700&family=Roboto+Condensed:wght@300;400;700&family=Roboto:wght@400;500;700&family=Smokum&family=Source+Sans+Pro:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- style links -->
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="./asset/css/style.css" />
+  </head>
+  <body>
+    <!-- header section with nav bar -->
+    <header class="header">
+      <nav class="navbar navbar-expand-lg navColor">
+        <div class="container-fluid">
+          <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a
+                class="nav-link active navText"
+                aria-current="page"
+                href="./index.html"
+                >Home</a
+              >
+              <a class="nav-link navText" href="./journal.html">My Journal</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- main section with banner -->
+    <main>
+      <!-- my banner section -->
+      <div class="jumbotron bannerContainer text-center">
+        <h1 class="display-4 fw-normal">My Weather Journey</h1>
+        <p class="lead">
+          A simple way to save the weather of your favorable travel places!
+        </p>
+        <hr class="my-4" />
+        <p class="lead">
+          <a
+            class="btn btn-primary btn-lg btnColor"
+            href="./journal.html"
+            role="button"
+            >+ Save New Journal</a
+          >
+        </p>
+      </div>
+
+      <div class="row g-0">
+        <!-- my aside div with search form -->
+        <div class="col-md-4 border">
+          <form class="p-3" id="searchForm">
+            <div class="mb-3">
+              <h2 class="mt-3 text-center">Search City Name</h2>
+              <hr />
+              <div class="input-group ms-1">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Search.."
+                  id="search-input"
+                />
+                <button
+                  type="submit"
+                  class="btn btn-primary btnColor"
+                  id="searchBtn"
+                >
+                  <i class="fa fa-search"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+          <!-- my aside div with search history -->
+          <div class="p-3" id="searchHistoryCity">
+            <h2 class="mt-3 text-center">Search History</h2>
+            <hr />
+            <ul class="list-group" id="cityName">
+              <!-- js render recent searched city name -->
+            </ul>
+            <div id="alarmSection"></div>
+            <div
+              class="p-3 d-flex justify-content-center"
+              id="clearAllBtn"
+            ></div>
+          </div>
+        </div>
+        <!-- my main div with current date -->
+        <div class="col-md-8 border" id="mainSection">
+          <div class="currentWeather" id="currentWeatherCard">
+            <!-- render current weather card in js -->
+          </div>
+
+          <!-- my main div with forcast weather info -->
+          <div class="row g-0" id="forcastSection">
+            <!-- render 6 day forcast weather card in js -->
+            <!-- <hr class="m-0" />
+            <h2 class="card-title text-center p-3 m-0 bgColor">
+              6-Day Forecast
+            </h2>
+            <div class="d-flex justify-content-center flex-wrap bgColor">
+              <div class="card m-2 shadow-sm border-0 weatherCards">
+                <div class="weatherIcon">
+                  <img
+                    src="http://openweathermap.org/img/w/04d.png"
+                    class="card-img-top border"
+                    alt="cloudy image"
+                  />
+                </div>
+                <div class="card-body text-center">
+                  <p class="card-text">Tue, 31st May, 2022</p>
+                </div>
+                <div class="row justify-content-center g-0">
+                  <div class="col-sm-12 col-md-5 p-2 border titleColor fw-bold">
+                    Temperature
+                  </div>
+                  <div class="col-sm-12 col-md-7 p-2 border">14.42°C</div>
+                </div>
+                <div class="row justify-content-center g-0">
+                  <div class="col-sm-12 col-md-5 p-2 border titleColor fw-bold">
+                    Humidity
+                  </div>
+                  <div class="col-sm-12 col-md-7 p-2 border">73%</div>
+                </div>
+                <div class="row justify-content-center g-0">
+                  <div class="col-sm-12 col-md-5 p-2 border titleColor fw-bold">
+                    Wind Speed
+                  </div>
+                  <div class="col-sm-12 col-md-7 p-2 border">5.14 MPH</div>
+                </div>
+                <div class="row justify-content-center g-0">
+                  <div class="col-sm-12 col-md-5 p-2 border titleColor fw-bold">
+                    UV Index
+                  </div>
+                  <div class="col-sm-12 col-md-7 p-2 border">
+                    <span class="UVColor px-2">4.31</span>
+                  </div>
+                </div>
+
+                <div class="card-body">
+                  <a href="#" class="card-link">Card link</a>
+                  <a href="#" class="card-link">Another link</a>
+                </div>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- my footer with copy right -->
+    <footer class="text-center"></footer>
+
+    <section></section>
+
+    <!-- script links -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+      integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <!-- script links -->
+    <script src="./asset/js/script.js"></script>
+  </body>
+</html>

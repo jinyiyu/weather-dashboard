@@ -1,0 +1,80 @@
+:root {
+  --pink-lace: #ffd6ffff;
+  --mauve: #e7c6ffff;
+  --maximum-blue-purple: #c8b6ffff;
+  --lavender-blue: #b8c0ffff;
+  --lavender-blue-2: #bbd0ffff;
+  --banner-backgroud: #f8f9fa;
+  --btn: #dee2ff;
+  --navbar: #8e9aaf;
+}
+
+/* page control */
+
+body {
+  min-height: 100vh;
+  font-family: "Dancing Script", cursive;
+  font-family: "Josefin Sans", sans-serif;
+  font-family: "Lato", sans-serif;
+  font-family: "Poppins", sans-serif;
+  font-family: "Roboto", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
+  font-family: "Smokum", cursive;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+.navColor {
+  background-color: var(--navbar);
+  font-size: large;
+  font-weight: 600;
+  color: rgb(97, 93, 93);
+}
+
+.btnColor {
+  background-color: var(--btn);
+  color: rgb(97, 93, 93);
+  border: none;
+}
+
+.navText {
+  color: whitesmoke;
+}
+
+.jumbotron {
+  padding: 2rem 1rem;
+  background-color: var(--banner-backgroud);
+  border-radius: 0.3rem;
+}
+
+.currentWeather {
+  padding: 2rem 1rem;
+  background-color: white;
+  border-radius: 0.3rem;
+}
+.rounded-pill {
+  background-color: var(--lavender-blue-2);
+  color: rgb(81, 80, 80);
+  font-size: 0.9rem;
+}
+
+.UVColor {
+  border-radius: 15%;
+  color: rgb(255, 255, 255);
+}
+.titleColor,
+.bgColor {
+  background-color: var(--banner-backgroud);
+}
+.weatherIcon {
+  width: 7rem;
+  height: 7rem;
+  display: block;
+  margin: auto;
+}
+.card-text {
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+.weatherCards {
+  width: 22rem;
+}
