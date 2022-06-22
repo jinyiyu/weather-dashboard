@@ -20,13 +20,13 @@
 ## About this Project
 
 ```
-This project is a weather dashboard that will run in the browser and feature dynamically updated HTML and CSS using third-party APIs.
+This project is a weather dashboard that will run in the browser and feature dynamically updated HTML and CSS using third-party APIs. This weather app includes a search option, a list of cities, and a six-day forecast and current weather conditions for cities around the world.
+```
 
 Notes:
 Third-party APIs allow developers to access their data and functionality by making requests with specific parameters to a URL. Developers are often tasked with retrieving data from another application's API and using it in the context of their own.
 
 Use the [OpenWeather One Call API](https://openweathermap.org/api/one-call-api) to retrieve weather data for cities. Read through the documentation for setup and usage instructions. This project use `localStorage` to store any persistent data. For more information on how to work with the OpenWeather API, refer to the [Full-Stack Blog on how to use API keys](https://coding-boot-camp.github.io/full-stack/apis/how-to-use-api-keys).
-```
 
 <br>
 
@@ -68,16 +68,58 @@ THEN I am again presented with current and future conditions for that city
 
 Check out my demo video [Here](https://drive.google.com/file/d/1zMqTcbWGFNL9hOBQpEtECbL1xd3rBMLN/view)
 
+<br />
+
 ## Mock-Up
 
 The following image shows the web application's appearance and functionality:
 
-![The weather app includes a search option, a list of cities, and a five-day forecast and current weather conditions for Atlanta.](.)
+<details>
+<summary> whole page layout - Starting Point</summary>
+
+![display](./asset/image/layout.png)
+
+</details>
 
 <details>
-<summary> Go to highscrose page to compare with other player</summary>
+<summary> Search Seciton on the left</summary>
 
-![display](./assets/image/high-scores.png)
+![display](./asset/image/search.png)
+
+</details>
+
+<br />
+
+When you type in the city name and hit the search icon, the current weather infomation and six-day forcasting weather infomation is all going to pup up for you:
+
+<details>
+<summary> Render Current Weather Information</summary>
+
+![display](./asset/image/currentInfo.png)
+
+</details>
+
+<details>
+<summary> Render Six-day Forcast Weather Information</summary>
+
+![display](./asset/image/forcastInfo.png)
+
+</details>
+
+<br />
+
+We could also help you save up your recent search which is able to click to re-show the up-to-date city infomation:
+
+<details>
+<summary> Search History with recent Searched City Name</summary>
+
+![display](./asset/image/renderRencentSearch.png)
+
+</details>
+<details>
+<summary> Page with Recent Search Information </summary>
+
+![display](./asset/image/layoutWithInfo.png)
 
 </details>
 
